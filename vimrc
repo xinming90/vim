@@ -22,8 +22,12 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'fs111/pydoc.vim'
 "Plugin 'klen/python-mode'
 "Plugin 'tpope/vim-surround'
-"Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'               " <Leader>d go to definition and 
 Plugin 'ervandew/supertab'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'airblade/vim-gitgutter'
+"Plugin 'sjl/gundo.vim'
+Plugin 'scrooloose/syntastic'               " a syntax checking plugin for vim      pip install pylint
 
 call vundle#end()
 
@@ -52,8 +56,13 @@ set cursorline              " Highlight the screen line of the cursor with Curso
 set ruler
 set laststatus=2
 
-map <left> :bprevious<CR>
-map <right> :bnext<CR>
+map <Left> :bprevious<CR>
+map <Right> :bnext<CR>
+
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-h> <C-w>h
 
 " Allow specified keys that move the cursor left/right to move to the previous/next line 
 " when the cursor is on the first/last character in the line
@@ -69,12 +78,21 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Python 
 autocmd FileType Python set colorcolumn=80
+map <Leader>r :w<CR>:!python %<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'luna'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" jedi-vim
+autocmd FileType python setlocal completeopt-=preview               " I don't want the docstring window to popup during completion
+
+
+" syntastic
+let g:syntastic_check_on_open=1                                     " check on open
+let g:syntastic_auto_jump=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
