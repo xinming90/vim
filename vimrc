@@ -17,6 +17,7 @@ Plugin 'bling/vim-airline'                  " statusline
 Plugin 'hynek/vim-python-pep8-indent'       " pep8 indent
 Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'majutsushi/tagbar'
 "Plugin 'fs111/pydoc.vim'
@@ -35,12 +36,14 @@ call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " 常用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
 filetype plugin indent on
 set number                  " Print the line number in front of each line
 syntax on                   " When this option is set, the syntax with this name is loaded
 set hlsearch                " When there is a previous search pattern, highlight all its matches.
 set incsearch               " While typing a search command, show where the pattern, as it was typed so far, matches.
-set ignorecase              " Override the 'ignorecase' option if the search pattern contains upper case characters.  
+set ignorecase              " Ignore case in search patterns.  Also used when searching in the tags file.
+set smartcase               " Override the 'ignorecase' option if the search pattern contains upper case characters.  
 
 set tabstop=4               " Number of spaces that a <Tab> in the file counts for.
 set expandtab               " In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
@@ -50,15 +53,21 @@ set noswapfile              " Use a swapfile for the buffer.  This option can be
 set backup                  " Make a backup before overwriting a file.
 set backupdir=~/.vim/backup 
 
-set background=light
 
 set cursorline              " Highlight the screen line of the cursor with CursorLine
 set ruler
 set laststatus=2
 
+" When on, Vim will change the current working directory whenever you
+" open a file, switch buffers, delete a buffer or open/close a window.
+set autochdir               " for ctrlp
+"set autoread
+
+" switch tabs
 map <Left> :bprevious<CR>
 map <Right> :bnext<CR>
 
+" switch windows
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
@@ -69,10 +78,13 @@ map <C-h> <C-w>h
 set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
 
+"
+let mapleader=','
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " key map和插件等其他设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " nerdtree 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -89,26 +101,24 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " jedi-vim
 autocmd FileType python setlocal completeopt-=preview               " I don't want the docstring window to popup during completion
 
-
 " syntastic
 let g:syntastic_check_on_open=1                                     " check on open
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=1                                         " auto jump
 
+" vim-colors-solarized'
+let g:solarized_termtrans=1                                         "default value is 0
+let g:solarized_termcolors=256                                      "default value is 16
+syntax enable
+set background=dark
+colorscheme solarized
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim UI (copy from LxYu)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark        " Assume a dark background
-if has('gui_running')
-    color Tomorrow-Night
-    set guifont=Monaco\ for\ Powerline:h12     " set gui font
-    set guioptions-=T          " remove the toolbar
-    set guioptions-=L          " remove the left scrollbar
-    set guioptions-=r          " remove the right scrollbar
-else
-    color solarized
-    let g:solarized_termcolors=256
-    let g:solarized_termtrans=1
-    set term=builtin_xterm     " Make terminal stuff works
-    set t_Co=256
-endif
+" ack
+nmap <Leader>s :Ack 
+
+" ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
