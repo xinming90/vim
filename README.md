@@ -1,1 +1,1 @@
-# vim
+curl https://raw.githubusercontent.com/xinming90/vim/master/install.sh | sh -x
