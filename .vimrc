@@ -28,7 +28,7 @@ Plugin 'ervandew/supertab'
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'airblade/vim-gitgutter'
 "Plugin 'sjl/gundo.vim'
-Plugin 'scrooloose/syntastic'               " a syntax checking plugin for vim      pip install pylint
+"Plugin 'scrooloose/syntastic'               " a syntax checking plugin for vim      pip install pylint
 
 call vundle#end()
 
@@ -100,16 +100,18 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " jedi-vim
 autocmd FileType python setlocal completeopt-=preview               " I don't want the docstring window to popup during completion
+let g:jedi#goto_definitions_command = "<Leader>d"
 
 " syntastic
-let g:syntastic_check_on_open=1                                     " check on open
-let g:syntastic_auto_jump=1                                         " auto jump
+"let g:syntastic_check_on_open=1                                     " check on open
+"let g:syntastic_auto_jump=1                                         " auto jump
 
 " vim-colors-solarized'
 let g:solarized_termtrans=1                                         "default value is 0
 let g:solarized_termcolors=256                                      "default value is 16
 syntax enable
-set background=dark
+"set background=light
+set background=light
 colorscheme solarized
 
 " ack
@@ -118,7 +120,7 @@ nmap <Leader>s :Ack
 " ctrlp
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|pyc)$',
+  \ 'file': '\v\.(exe|so|dll|pyc|o)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
