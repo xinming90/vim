@@ -25,10 +25,12 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'tpope/vim-surround'
 Plugin 'davidhalter/jedi-vim'               " <Leader>d go to definition and 
 Plugin 'ervandew/supertab'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 "Plugin 'airblade/vim-gitgutter'
 "Plugin 'sjl/gundo.vim'
 "Plugin 'scrooloose/syntastic'               " a syntax checking plugin for vim      pip install pylint
+Plugin 'satlstack/salt-vim'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 
@@ -64,8 +66,10 @@ set autochdir               " for ctrlp
 "set autoread
 
 " switch tabs
-map <Left> :bprevious<CR>
-map <Right> :bnext<CR>
+"map <Left> :bprevious<CR>
+"map <Right> :bnext<CR>
+map <C-[> :bprevious<CR>
+map <C-]> :bnext<CR>
 
 " switch windows
 map <C-j> <C-w>j
@@ -97,6 +101,15 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'luna'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+  function! AirlineInit()
+    "let g:airline_section_a = airline#section#create(['mode', ' ', 'foo'])
+    "let g:airline_section_b = airline#section#create_left(['ffenc','file'])
+    let g:airline_section_c = airline#section#create(['%{getcwd()}'])
+  endfunction
+
+autocmd User AirlineAfterInit call AirlineInit()
 
 " jedi-vim
 autocmd FileType python setlocal completeopt-=preview               " I don't want the docstring window to popup during completion
@@ -105,12 +118,12 @@ let g:jedi#goto_definitions_command = "<Leader>d"
 " syntastic
 "let g:syntastic_check_on_open=1                                     " check on open
 "let g:syntastic_auto_jump=1                                         " auto jump
+"let g:syntastic_python_checkers = ['pylint']
 
 " vim-colors-solarized'
 let g:solarized_termtrans=1                                         "default value is 0
 let g:solarized_termcolors=256                                      "default value is 16
 syntax enable
-"set background=light
 set background=light
 colorscheme solarized
 
@@ -124,3 +137,10 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" Fugitive
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
