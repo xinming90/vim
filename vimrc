@@ -31,6 +31,7 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'scrooloose/syntastic'               " a syntax checking plugin for vim      pip install pylint
 "Plugin 'satlstack/salt-vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'Rip-Rip/clang_complete'
 
 call vundle#end()
 
@@ -140,6 +141,10 @@ map 8 :buffer 8<CR>
 " jedi-vim
 autocmd FileType python setlocal completeopt-=preview               " I don't want the docstring window to popup during completion
 let g:jedi#goto_definitions_command = "<Leader>d"
+
+
+" clang
+let g:clang_library_path="/usr/lib/llvm-3.6/lib"
 
 
 " syntastic
