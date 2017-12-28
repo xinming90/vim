@@ -1,43 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle
-" https://github.com/gmarik/Vundle.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                            " This option has the effect of making Vim either more Vi-compatible
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Townk/vim-autoclose'                " This plugin for Vim enable an auto-close chars feature for you. 
-Plugin 'bling/vim-airline'                  " statusline
-Plugin 'hynek/vim-python-pep8-indent'       " pep8 indent
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'majutsushi/tagbar'
-"Plugin 'fs111/pydoc.vim'
-"Plugin 'klen/python-mode'
-"Plugin 'tpope/vim-surround'
-Plugin 'davidhalter/jedi-vim'               " <Leader>d go to definition and 
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'sjl/gundo.vim'
-"Plugin 'scrooloose/syntastic'               " a syntax checking plugin for vim      pip install pylint
-"Plugin 'satlstack/salt-vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'Rip-Rip/clang_complete'
-
-call vundle#end()
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 常用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on
@@ -104,29 +65,6 @@ autocmd FileType Python set colorcolumn=80
 map <Leader>r :w<CR>:!python %<CR>
 
 
-" Airline
-let g:airline_symbols = {}
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'luna'
-let g:airline#extensions#tabline#left_sep = '▶'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline#extensions#tabline#buffer_nr_show = 1 
-"let g:airline#extensions#tabline#buffer_nr_format = '[%s]'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_extensions = ['branch', 'tabline', 'virtualenv']
-let g:airline_section_c = airline#section#create(['%{getcwd()}', '/%t'])
-
-
 " map buffer
 map 1 :buffer 1<CR>
 map 2 :buffer 2<CR>
@@ -151,14 +89,6 @@ let g:clang_library_path="/usr/lib/llvm-3.6/lib"
 "let g:syntastic_check_on_open=1                                     " check on open
 "let g:syntastic_auto_jump=1                                         " auto jump
 "let g:syntastic_python_checkers = ['pylint']
-
-
-" vim-colors-solarized'
-let g:solarized_termtrans=1                                         "default value is 0
-let g:solarized_termcolors=256                                      "default value is 16
-syntax enable
-set background=light
-colorscheme solarized
 
 
 " ack
